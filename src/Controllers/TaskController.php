@@ -10,7 +10,15 @@ use App\Validators\TaskValidator;
 use OpenApi\Annotations as OA;
 
 
+
 /**
+ * @OA\Info(
+ *     title="Slim Task Manager API",
+ *     version="1.0.0",
+ *     description="Swagger documentation for the Slim Task Manager project"
+ * )
+ * 
+ * 
  * @OA\Schema(
  *     schema="Task",
  *     type="object",
@@ -20,8 +28,16 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(property="description", type="string", description="Task description"),
  *     @OA\Property(property="completed", type="boolean", description="Task completion status")
  * )
+ * 
+ * 
+ *
+ * @OA\SecurityScheme(
+ *     securityScheme="ApiKeyAuth",
+ *     type="apiKey",
+ *     in="header",
+ *     name="x-api-key"
+ * )
  */
-
 
 
 class TaskController
@@ -44,6 +60,7 @@ class TaskController
      *     )
      * )
      */
+
     public function index(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $params = $request->getQueryParams();
@@ -60,6 +77,7 @@ class TaskController
      * @OA\Get(
      *     path="/tasks/{id}",
      *     summary="Get task by ID",
+     *     security={{"ApiKeyAuth":{}}},
      *     tags={"tasks"},
      *     @OA\Parameter(
      *         name="id",
@@ -79,6 +97,7 @@ class TaskController
      *     )
      * )
      */
+
     public function show(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $task = Task::find($args['id']);
@@ -95,6 +114,7 @@ class TaskController
      *     path="/tasks",
      *     summary="Create a new task",
      *     tags={"tasks"},
+     *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -149,6 +169,7 @@ class TaskController
      * @OA\Put(
      *     path="/tasks/{id}",
      *     summary="Update an existing task",
+     *     security={{"ApiKeyAuth":{}}},
      *     tags={"tasks"},
      *     @OA\Parameter(
      *         name="id",
@@ -177,6 +198,7 @@ class TaskController
      *     )
      * )
      */
+    
     public function update(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $id = $args['id'];
@@ -220,6 +242,7 @@ class TaskController
      * @OA\Delete(
      *     path="/tasks/{id}",
      *     summary="Delete a task by ID",
+     *     security={{"ApiKeyAuth":{}}},
      *     tags={"tasks"},
      *     @OA\Parameter(
      *         name="id",
@@ -238,6 +261,7 @@ class TaskController
      *     )
      * )
      */
+
     public function destroy(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $task = Task::find($args['id']);

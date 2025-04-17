@@ -7,11 +7,22 @@ This is a basic SlimPHP-based API for managing tasks, using PostgreSQL for the d
 - Docker
 - Docker Compose
 
+## Features
+
+- SlimPHP-based REST API
+- PostgreSQL integration
+- Dockerized setup
+- Automatic database migration on container start
+- Illuminate ORM
+- Swagger documentation (with API Key support)
+
+### Project Structure
+
 ## Setup
 
 1. Clone the repository:
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/saharakhtar/TaskListCrud.git
     cd slimphp-task-manager
     ```
 
@@ -25,10 +36,17 @@ This is a basic SlimPHP-based API for managing tasks, using PostgreSQL for the d
     docker-compose up --build
     ```
 
-4. Access the API at `http://localhost:8083`
+4. Access the API at `http://localhost:8085`
 
-5. Migration will run when DB is created by docker 
-   
+
+5. Uses PostgreSQL. Migrations run automatically when the Docker image is built.
+
+### API Documentation
+
+Once the application is running, you can view the Swagger UI for API documentation at:
+
+[http://localhost:8085/swagger-ui/](http://localhost:8085/swagger-ui/)
+
 
 ## API Endpoints
 
@@ -39,7 +57,5 @@ This is a basic SlimPHP-based API for managing tasks, using PostgreSQL for the d
 - `DELETE /tasks/{id}`: Delete a task
 
 ## Testing
+i didn't implemented php unit testcases
 
-The API is now ready to be tested.
-
-Use Swagger or Postman for testing.
