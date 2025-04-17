@@ -24,7 +24,7 @@ This is a basic SlimPHP-based API for managing tasks, using PostgreSQL for the d
 1. Clone the repository:
     ```bash
     git clone https://github.com/saharakhtar/TaskListCrud.git
-    cd slimphp-task-manager
+    cd TaskListCrud
     ```
 
 2. Create the `.env` file by copying the example:
